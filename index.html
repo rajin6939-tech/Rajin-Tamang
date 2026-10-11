@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RAJIN DESIGNER — free design resources, templates and editable design files.">
+  <title>RAJIN DESIGNER | Design Resources</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement">DESIGN • CREATE • SHARE — Starter collection is free</div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="RAJIN DESIGNER home">
+      <span class="brand-mark">R</span>
+      <span><strong>RAJIN</strong><small>DESIGNER</small></span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="#explore">Explore</a><a href="#categories">Categories</a><a href="#about">About</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="searchToggle" aria-label="Search designs">⌕</button>
+      <a class="admin-link" href="#admin">Admin <span>↗</span></a>
+      <button class="menu-button" id="menuToggle" aria-label="Toggle menu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="explore">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="pulse"></span> THE CREATIVE RESOURCE HUB</div>
+        <h1>Good design.<br><em>Made accessible.</em></h1>
+        <p>Discover creative assets for your next idea — logos, banners, certificates, social posts and editable Photoshop files.</p>
+        <div class="hero-buttons"><a class="button primary" href="#library">Explore designs <span>↗</span></a><a class="button secondary" href="#categories">Browse categories</a></div>
+        <div class="hero-proof"><span class="avatars">R<span>D</span>+</span><span>Made for creators, shops &amp; businesses</span></div>
+      </div>
+      <div class="hero-art hero-profile" aria-label="RAJIN DESIGNER logo and designer portrait">
+        <div class="profile-glow"></div>
+        <div class="logo-panel"><img src="assets/rajin-logo.png" alt="RAJIN DESIGNER logo"></div>
+        <div class="portrait-stage">
+          <div class="studio-label"><span class="pulse"></span> DESIGN STUDIO / 2026</div>
+          <img class="designer-portrait" src="assets/rajin-portrait.jpg" alt="RAJIN DESIGNER portrait">
+          <div class="laptop"><div class="laptop-screen"><span class="screen-mark">R.</span><span class="screen-lines"></span><span class="screen-lines short"></span></div><div class="laptop-base"></div></div>
+          <div class="working-tag"><span>✦</span><div><b>CREATIVE MODE</b><small>Ideas into visuals</small></div></div>
+        </div>
+        <div class="art-caption">RAJIN DESIGNER <span>— VISUAL RESOURCE STUDIO</span></div>
+      </div>
+    </section>
+
+    <section class="stats-row">
+      <div><strong>06</strong><span>Resource categories</span></div><div><strong>Rs. 00.00</strong><span>Starting display price</span></div><div><strong>PSD · PNG · JPG</strong><span>Useful file formats</span></div>
+    </section>
+
+    <section class="section categories-section" id="categories">
+      <div class="section-heading"><div><div class="eyebrow">FIND YOUR NEXT ASSET</div><h2>Explore by <em>category.</em></h2></div><p>From a new brand identity to your next social post, find the right starting point.</p></div>
+      <div class="category-grid" id="categoryGrid"></div>
+    </section>
+
+    <section class="section library-section" id="library">
+      <div class="section-heading library-heading"><div><div class="eyebrow">THE RESOURCE LIBRARY</div><h2>Fresh from the <em>studio.</em></h2></div><div class="filter-wrap"><input id="searchInput" type="search" placeholder="Search designs..." aria-label="Search designs"><select id="categoryFilter" aria-label="Filter category"><option value="All">All categories</option></select></div></div>
+      <div class="product-grid" id="productGrid"></div>
+      <div class="empty-state" id="emptyState" hidden><div class="empty-icon">✳</div><h3>No designs yet</h3><p>New assets will appear here when added by the site admin.</p></div>
+    </section>
+
+    <section class="cta-section" id="about"><div class="cta-mark">R<span>.</span></div><div><div class="eyebrow">YOUR IDEA, YOUR NEXT DESIGN</div><h2>Start with a blank canvas.<br><em>Leave with a big idea.</em></h2></div><a class="button light" href="#library">Explore the library ↗</a></section>
+
+    <section class="section admin-section" id="admin">
+      <div class="section-heading"><div><div class="eyebrow">PRIVATE WORKSPACE PREVIEW</div><h2>Admin <em>studio.</em></h2></div><p>Add sample products and adjust display details in this browser prototype.</p></div>
+      <div class="admin-note"><span class="note-icon">i</span><div><strong>Prototype notice</strong><p>This demo admin uses this browser's local storage only. It is not a secure, shared admin system and uploaded files are not published for other visitors. Before public launch, connect authentication, database and private/public file storage.</p></div></div>
+      <form id="productForm" class="admin-form">
+        <div class="form-title"><span>＋</span><div><strong>Add a design</strong><small>Fields marked * are required</small></div></div>
+        <div class="form-grid">
+          <label>Design title *<input id="productTitle" required maxlength="90" placeholder="e.g. Modern Blue Logo Pack"></label>
+          <label>Category *<select id="productCategory" required></select></label>
+          <label>File format<select id="productFormat"><option>PSD</option><option>PNG</option><option>JPG</option><option>PDF</option><option>AI</option><option>PSD + PNG</option><option>ZIP bundle</option></select></label>
+          <label>Display price (NPR)<input id="productPrice" value="00.00" pattern="[0-9]+([.][0-9]{1,2})?" required></label>
+          <label class="full">Short description<textarea id="productDescription" rows="2" placeholder="What is included in this design?"></textarea></label>
+          <label class="full">Preview image (optional)<input id="productImage" type="file" accept="image/png,image/jpeg,image/webp"></label>
+          <label class="full">Original file (optional)<input id="productFile" type="file" accept=".psd,.png,.jpg,.jpeg,.pdf,.ai,.zip,.svg,.eps"></label>
+        </div>
+        <div class="form-actions"><button class="button primary" type="submit">Add to this browser <span>＋</span></button><button class="button secondary" type="button" id="resetDemo">Reset demo items</button></div>
+        <p class="form-feedback" id="formFeedback" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer"><a class="brand footer-brand" href="#"><span class="brand-mark">R</span><span><strong>RAJIN</strong><small>DESIGNER</small></span></a><p>Creative resources for people with ideas.</p><span>© <span id="year"></span> RAJIN DESIGNER</span></footer>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
