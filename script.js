@@ -62,3 +62,61 @@ $("resetDemo").addEventListener("click",()=>{products=STARTER.map(p=>({...p}));s
 $("searchToggle").addEventListener("click",()=>{$("searchInput").focus();$("library").scrollIntoView({behavior:"smooth"});});
 $("menuToggle").addEventListener("click",()=>document.querySelector(".desktop-nav").classList.toggle("open"));
 document.querySelectorAll(".desktop-nav a").forEach(a=>a.addEventListener("click",()=>document.querySelector(".desktop-nav").classList.remove("open")));
+aba java scriptma // १. Admin Password सेट (तपाईँले चाहे अनुसार फेर्न सक्नुहुन्छ)
+const ADMIN_PASS = "rajin123";
+
+function openAdminModal() {
+  document.getElementById("adminModal").style.display = "flex";
+  document.getElementById("adminLoginForm").style.display = "block";
+  document.getElementById("adminFormContent").style.display = "none";
+  document.getElementById("adminPasswordInput").value = "";
+}
+
+function closeAdminModal() {
+  document.getElementById("adminModal").style.display = "none";
+}
+
+function checkAdminLogin() {
+  const enteredPass = document.getElementById("adminPasswordInput").value;
+  if (enteredPass === ADMIN_PASS) {
+    document.getElementById("adminLoginForm").style.display = "none";
+    document.getElementById("adminFormContent").style.display = "block";
+  } else {
+    alert("❌ Incorrect Password! Access Denied.");
+  }
+}
+
+function addNewPSDItem() {
+  const title = document.getElementById("psdTitleInput").value;
+  const rate = document.getElementById("psdRateInput").value;
+  const image = document.getElementById("psdImageInput").value;
+  const link = document.getElementById("psdFileLinkInput").value;
+
+  if (!title || !rate || !link) {
+    alert("⚠️ Please fill in Title, Rate, and Download Link!");
+    return;
+  }
+
+  const newItem = {
+    id: Date.now(),
+    title: title,
+    rate: rate,
+    image: image,
+    link: link
+  };
+
+  // LocalStorage मा सेभ गर्ने
+  let currentProducts = JSON.parse(localStorage.getItem("rajin_psd_items")) || [];
+  currentProducts.push(newItem);
+  localStorage.setItem("rajin_psd_items", JSON.stringify(currentProducts));
+
+  alert(`✅ Successfully Added!\n\nTitle: ${title}\nRate: NPR ${rate}`);
+  
+  // Modal बन्द गर्ने
+  closeAdminModal();
+  
+  // यदि तपाईँको साइटमा Product Render गर्ने function छ भने त्यसलाई refresh गर्नुहोस्
+  if (typeof renderProducts === "function") {
+    renderProducts();
+  }
+}
