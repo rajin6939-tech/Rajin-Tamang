@@ -128,3 +128,46 @@
 </html>
 </body>
 </html>
+<!-- Supabase Integration Script -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  // तिम्रो Supabase Credentials
+  const SUPABASE_URL = "https://ntwygsbzcxxurxjlomdm.supabase.co";
+  const SUPABASE_KEY = "sb_publishable__BYA4V6lUX6feY6migeE4w_x5okotRH";
+
+  const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  // वेबसाइट खुल्नेबित्तिकै Products लोड गर्ने फंक्सन
+  async function loadProducts() {
+    try {
+      const { data: products, error } = await _supabase
+        .from('Products')
+        .select('*');
+
+      if (error) {
+        console.error("Error fetching products:", error);
+        return;
+      }
+
+      console.log("Loaded Products:", products);
+      
+      // यदि तिम्रो HTML मा उत्पादनहरू देखाउने ठाउँ (container) छ भने यहाँ देखाउन मिल्छ
+      const container = document.getElementById("product-container");
+      if (container && products) {
+        container.innerHTML = products.map(product => `
+          <div class="product-card">
+            <img src="${product.Image || product.image_url || ''}" alt="${product.Title || 'Design'}">
+            <h3>${product.Title || 'Untitled'}</h3>
+            <p>Rs. ${product.Price || 0}</p>
+            <a href="${product.Fileurl || '#'}" target="_blank" class="download-btn">Download</a>
+          </div>
+        `).join('');
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+    }
+  }
+
+  // पेज लोड भएपछि कल हुने
+  document.addEventListener("DOMContentLoaded", loadProducts);
+</script>
